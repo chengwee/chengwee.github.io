@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchResumeData, ResumeType } from './services/resumeService';
 import { ResumeData } from './types';
 import { Hero } from './components/Hero';

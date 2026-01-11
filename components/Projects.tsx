@@ -1,7 +1,7 @@
 import React from 'react';
 import { Project } from '../types';
 import { Section } from './Section';
-import { Terminal, ExternalLink, Github } from './Icons';
+import { Terminal, ExternalLink } from './Icons';
 
 interface ProjectsProps {
   projects: Project[];

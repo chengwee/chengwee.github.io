@@ -23,7 +23,6 @@ import {
   Smartphone,
   Wrench
 } from 'lucide-react';
-import React from 'react';
 
 // Map profile networks to icons
 export const SocialIcon = ({ network, className }: { network: string, className?: string }) => {
