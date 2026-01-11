@@ -1,20 +1,79 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+Cheng Wee's Portfolio
+=====================
 
-# Run and deploy your AI Studio app
+A modern, responsive portfolio built with **React**, **TypeScript**, and **Vite**. It dynamically fetches resume data from GitHub Gists, featuring a dual-view system (Portfolio vs. Full CV), dark mode, and scroll-aware navigation.
 
-This contains everything you need to run your app locally.
+🛠️ Tech Stack
+--------------
 
-View your app in AI Studio: https://ai.studio/apps/drive/1TWfFsHpaRzMR1M2Wn600Co3dQSxHf-6-
+**React 18** - **TypeScript** - **Vite** - **Tailwind CSS** - **Lucide React**
 
-## Run Locally
+⚡ Quick Start
+-------------
 
-**Prerequisites:**  Node.js
+```
+# 1. Clone & Install
+git clone [https://github.com/your-username/cheng-wee-portfolio.git](https://github.com/your-username/cheng-wee-portfolio.git)
+cd cheng-wee-portfolio
+npm install
 
+# 2. Run Dev Server
+npm run dev
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+```
+
+⚙️ Configuration
+----------------
+
+-   **Data Source:** Update `USERNAME` and `GIST_IDS` in `src/services/resumeService.ts` to point to your JSON Resume Gists (one for Portfolio view, one for Full CV).
+
+-   **Styling:** Customize the `primary` and `accent` colors inside the `<script>` tag in `index.html`.
+
+🚀 Deployment (GitHub Pages)
+----------------------------
+
+1.  In repository **Settings > Pages**, set **Source** to **GitHub Actions**.
+
+2.  Create `.github/workflows/deploy.yml`:
+
+```
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      - run: npm ci && npm run build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
+
+```
