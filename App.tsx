@@ -98,6 +98,7 @@ function App() {
       <main className="pb-20">
         <Hero 
           basics={currentData.basics} 
+          latestWork={currentData.work?.[0]}
         />
         
         {/* We use specific ordering based on standard portfolio flow */}

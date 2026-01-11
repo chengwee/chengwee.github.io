@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { Basics } from '../types';
+import { Basics, Work } from '../types';
 import { Mail, MapPin, Code, Terminal } from './Icons';
 
 interface HeroProps {
   basics: Basics;
+  latestWork?: Work;
 }
 
-export const Hero: React.FC<HeroProps> = ({ basics }) => {
+export const Hero: React.FC<HeroProps> = ({ basics, latestWork }) => {
   const [imgError, setImgError] = useState(false);
 
   const getGithubUsername = () => {
@@ -35,13 +36,30 @@ export const Hero: React.FC<HeroProps> = ({ basics }) => {
         {/* Left: Text Content */}
         <div className="order-2 lg:order-1 text-center md:text-left flex flex-col gap-8 animate-slide-up">
           <div className="flex flex-col gap-6">
-             <div className="self-center md:self-start inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700 text-sm font-medium text-slate-600 dark:text-slate-300 shadow-sm">
-                <span className="relative flex h-3 w-3">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-                </span>
-                Building at Tictag.io
-             </div>
+             {/* Status Badge - Dynamic based on latest work */}
+             {latestWork ? (
+                <a 
+                   href={latestWork.url}
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   className={`self-center md:self-start inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700 text-sm font-medium text-slate-600 dark:text-slate-300 shadow-sm transition-all ${latestWork.url ? 'hover:scale-105 hover:border-primary-400 hover:text-primary-600 dark:hover:text-primary-400' : 'cursor-default'}`}
+                   onClick={(e) => !latestWork.url && e.preventDefault()}
+                >
+                    <span className="relative flex h-3 w-3 shrink-0">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                    </span>
+                    <span>Building at {latestWork.name || latestWork.company}</span>
+                </a>
+             ) : (
+                <div className="self-center md:self-start inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border border-slate-200 dark:border-slate-700 text-sm font-medium text-slate-600 dark:text-slate-300 shadow-sm">
+                   <span className="relative flex h-3 w-3 shrink-0">
+                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                     <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                   </span>
+                   Open to Opportunities
+                </div>
+             )}
 
              <h1 className="text-5xl md:text-7xl font-black text-slate-900 dark:text-white tracking-tight leading-[1.1]">
                 Hello, I'm <br />
