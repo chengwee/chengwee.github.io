@@ -88,13 +88,43 @@ export const Hero: React.FC<HeroProps> = ({ basics, latestWork }) => {
             </a>
           </div>
 
-          <div className="pt-2 flex items-center justify-center md:justify-start gap-6 text-slate-500 dark:text-slate-400 text-sm font-medium">
-             {basics.location && (
-               <div className="flex items-center gap-2">
-                 <MapPin className="w-4 h-4 text-accent-500" />
-                 {basics.location.city}, {basics.location.countryCode}
-               </div>
-             )}
+          <div className="flex flex-col gap-4">
+             <div className="flex items-center justify-center md:justify-start gap-6 text-slate-500 dark:text-slate-400 text-sm font-medium">
+                {basics.location && (
+                  <div className="flex items-center gap-2">
+                    <MapPin className="w-4 h-4 text-accent-500" />
+                    {basics.location.city}, {basics.location.countryCode}
+                  </div>
+                )}
+             </div>
+
+             {/* Experimental Projects / Intrusive Thoughts */}
+             <div className="mt-2 pt-4 border-t border-slate-200/60 dark:border-slate-800/60 flex flex-col items-center md:items-start gap-2">
+                <div className="flex items-center gap-2 text-xs text-slate-400 dark:text-slate-500 italic">
+                   <span>Born from intrusive thoughts:</span>
+                </div>
+                <div className="flex flex-wrap justify-center md:justify-start gap-x-4 gap-y-2 text-sm font-mono text-slate-600 dark:text-slate-400">
+                    <a 
+                      href="https://unrivaled-toffee-a8b1ff.netlify.app/" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="hover:text-primary-500 hover:underline decoration-dashed underline-offset-4 transition-all"
+                      title="A JSON Resume Renderer"
+                    >
+                      resume_renderer
+                    </a>
+                    <span className="text-slate-300 dark:text-slate-700">/</span>
+                    <a 
+                      href="https://ornate-cajeta-e89926.netlify.app/" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="hover:text-primary-500 hover:underline decoration-dashed underline-offset-4 transition-all"
+                      title="Precision Drafting Canvas"
+                    >
+                      drafting_canvas
+                    </a>
+                </div>
+             </div>
           </div>
         </div>
 
